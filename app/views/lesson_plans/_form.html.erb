@@ -1,0 +1,40 @@
+<div class="form-container">
+
+<%= form_with model: @lesson_plan, local: true do |f| %>
+
+<div class="field<%= ' field_with_errors' if @lesson_plan.errors[:name].any? %>">
+  <%= f.label :name, "Name: " %>
+  <%= f.text_field :name %> <br>
+</div>
+
+  <div class="field<%= ' field_with_errors' if @lesson_plan.errors[:subject].any? %>">
+    <%= f.label "Subject: " %> <br>
+    <%= collection_select(:lesson_plan, :subject_id, Subject.all, :id, :sub_name, prompt: true, class: "select") %> <br>
+    </div>
+  <div class="field<%= ' field_with_errors' if @lesson_plan.errors[:subject].any? %>">
+    <%= f.label "Create New: " %> <br>
+    <%= f.fields_for :subject, @subject do |subject_fields| %>
+      <%= subject_fields.text_field :sub_name %> <br>
+    <% end %>
+  </div>
+
+  <%= f.label :books, "Book(s): " %> <br>
+  <div class="checkbox-container">
+    <%= f.collection_check_boxes :book_ids, Book.all, :id, :title, class: 'checkbox' %>
+  </div>  <br>
+
+
+<div class="field<%= ' field_with_errors' if @lesson_plan.errors[:start_date].any? %>">
+  <%= f.label :start_date, "Start Date: " %>
+  <%= f.date_field :start_date, value: f.object.try(:strftime,"%m/%d/%Y"), class: 'form-control' %> <br>
+</div >
+
+<div class="field<%= ' field_with_errors' if @lesson_plan.errors[:duration].any? %>">
+  <%= f.label :duration, "Duration (in days): " %>
+  <%= f.number_field :duration %> <br>
+</div >
+
+  <%= f.submit %>
+<% end %>
+
+</div>

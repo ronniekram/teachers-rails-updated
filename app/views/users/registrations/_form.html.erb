@@ -1,0 +1,11 @@
+  <p>Your Information: </p> <br>
+
+ <div class="field">
+  <%= f.label :name, "Your Name: " %> <br />
+  <%= f.text_field :name %>
+ </div>
+
+  <div class="field">
+  <%= f.label :grade, "What grade do you teach? " %> 
+  <%= f.select :grade, (['Pre-K', 'K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th']), prompt: true %>
+ </div>

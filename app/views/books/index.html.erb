@@ -1,0 +1,7 @@
+<h1> School Library</h1>
+
+  <%= render 'search' %>
+
+<% @books.each do |book| %>
+<li> <%= link_to "#{book.title} - #{book.author}", book_path(book) %> </li>
+<% end %>
